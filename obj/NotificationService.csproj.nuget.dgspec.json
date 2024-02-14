@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "D:\\praktyki\\NotificationService\\NotificationService\\NotificationService.csproj": {}
+    "D:\\Praktyki\\NotificationService\\NotificationService\\NotificationService.csproj": {}
   },
   "projects": {
-    "D:\\praktyki\\NotificationService\\NotificationService\\NotificationService.csproj": {
+    "D:\\Praktyki\\NotificationService\\NotificationService\\NotificationService.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "D:\\praktyki\\NotificationService\\NotificationService\\NotificationService.csproj",
+        "projectUniqueName": "D:\\Praktyki\\NotificationService\\NotificationService\\NotificationService.csproj",
         "projectName": "NotificationService",
-        "projectPath": "D:\\praktyki\\NotificationService\\NotificationService\\NotificationService.csproj",
+        "projectPath": "D:\\Praktyki\\NotificationService\\NotificationService\\NotificationService.csproj",
         "packagesPath": "C:\\Users\\bar1w\\.nuget\\packages\\",
-        "outputPath": "D:\\praktyki\\NotificationService\\NotificationService\\obj\\",
+        "outputPath": "D:\\Praktyki\\NotificationService\\NotificationService\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "D:\\VS_SharedToolsSDKs\\NuGetPackages"
@@ -49,9 +49,27 @@
               "target": "Package",
               "version": "[8.0.1, )"
             },
+            "Microsoft.EntityFrameworkCore": {
+              "target": "Package",
+              "version": "[8.0.2, )"
+            },
+            "Microsoft.EntityFrameworkCore.InMemory": {
+              "target": "Package",
+              "version": "[8.0.2, )"
+            },
+            "Microsoft.EntityFrameworkCore.design": {
+              "include": "Runtime, Build, Native, ContentFiles, Analyzers, BuildTransitive",
+              "suppressParent": "All",
+              "target": "Package",
+              "version": "[8.0.2, )"
+            },
             "Swashbuckle.AspNetCore": {
               "target": "Package",
               "version": "[6.4.0, )"
+            },
+            "System.ComponentModel.Annotations": {
+              "target": "Package",
+              "version": "[5.0.0, )"
             }
           },
           "imports": [
