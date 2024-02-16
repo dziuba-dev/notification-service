@@ -31,6 +31,11 @@ namespace NotificationService.Data
         {
             return _context.EmailsToUser.ToList();
         }
+        public EmailToUser GetUserById(Guid userId)
+        {
+
+            return _context.EmailsToUser.FirstOrDefault(e => e.UserId == userId);
+        }
 
         public bool SaveChanges()
         {

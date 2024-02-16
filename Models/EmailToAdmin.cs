@@ -11,8 +11,8 @@ namespace NotificationService.Models
 
     public class EmailToAdmin : Entity
     {
-        public Guid UserId {  get; set; }
-        public DateTime createdAt = DateTime.Now;
+        public  Guid UserId {  get; set; }
+        public readonly DateTime CreatedAt = DateTime.Now;
         [Required]
         public string Email { get; set; }
         [Required]
