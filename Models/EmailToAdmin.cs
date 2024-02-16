@@ -9,15 +9,14 @@ namespace NotificationService.Models
         Other = 2
     }
 
-    public class EmailToAdmin
+    public class EmailToAdmin : Entity
     {
+        public Guid UserId {  get; set; }
+        public DateTime createdAt = DateTime.Now;
         [Required]
         public string Email { get; set; }
         [Required]
         public string message { get; set; }
-        [Key]
-        [Required]
-        public Guid UserId { get; set; }
         [Required]
         public UserType UserType { get; set; }
     }

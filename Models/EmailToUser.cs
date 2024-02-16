@@ -2,11 +2,10 @@ using System.ComponentModel.DataAnnotations;
 
 namespace NotificationService.Models
 {
-    public class EmailToUser
+    public class EmailToUser : Entity
     {
-        [Key]
-        [Required]
-        public Guid UserId { get; set; }
+        public Guid UserId=Guid.NewGuid();
+        public DateTime CreatedAt = DateTime.Now;
         [Required]
         public string Email { get; set; }
         [Required]
