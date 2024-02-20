@@ -6,7 +6,7 @@ namespace NotificationService.Models
     {
         [Key]
         [Required]
-        public Guid Id {get; set; }
+        public static Guid UserID = new Guid("f1b0e205-3e66-4bd7-a977-5a097cb056a7");
         public readonly DateTime CreatedAt=DateTime.Now;
     
     }

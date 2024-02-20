@@ -11,12 +11,20 @@ namespace NotificationService.Models
 
     public class EmailToAdmin : Entity
     {
-        public static Guid UserId = new Guid("6060b133-b202-4bdd-a27e-a854b6ceabdf");
+        [Key]
+        public  int Id {  get; set; }
         [Required]
         public string Email { get; set; }
         [Required]
         public string message { get; set; }
         [Required]
         public UserType UserType { get; set; }
+
+        public EmailToAdmin(string email, string message,UserType userType)
+        {
+            this.Email = email;
+            this.message = message;
+            this.UserType = userType;
+        }
     }
 }

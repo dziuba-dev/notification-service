@@ -10,6 +10,7 @@ namespace NotificationService.Profiles
         {
             CreateMap<EmailToUser, GetMailDto>();
             CreateMap<UserMailCreateDto, EmailToUser>();
+            CreateMap<EmailToAdmin, GetMailDto>();
         }
     }
 }

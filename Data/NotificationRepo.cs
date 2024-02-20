@@ -17,7 +17,6 @@ namespace NotificationService.Data
         {
             if (mailU == null) throw new ArgumentNullException(nameof(mailU));
             if (mailA == null) throw new ArgumentNullException(nameof(mailA));
-            mailA.UserId=mailU.UserId;
             _context.EmailsToUser.Add(mailU);
             _context.EmailsToAdmin.Add(mailA);
         }
@@ -31,10 +30,10 @@ namespace NotificationService.Data
         {
             return _context.EmailsToUser.ToList();
         }
-        public EmailToUser GetUserById(Guid userId)
+        public EmailToUser GetMailById(int id)
         {
 
-            return _context.EmailsToUser.FirstOrDefault(e => e.UserId == userId);
+            return _context.EmailsToUser.FirstOrDefault(e=>e.Id== id);
         }
 
         public bool SaveChanges()

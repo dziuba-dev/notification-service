@@ -4,7 +4,8 @@ namespace NotificationService.Models
 {
     public class EmailToUser : Entity
     {
-        public static Guid UserId = new Guid("6060b133-b202-4bdd-a27e-a854b6ceabdf");
+        [Key]
+        public  int Id{ get; set; }
         [Required]
         public string Email { get; set; }
         [Required]

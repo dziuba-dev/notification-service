@@ -1,14 +1,13 @@
-﻿using System.ComponentModel.DataAnnotations;
+﻿using NotificationService.Models;
+using System.ComponentModel.DataAnnotations;
+using System.Diagnostics.CodeAnalysis;
 
 namespace NotificationService.Dtos
 {
     public class GetMailDto
     {
-        public readonly Guid UserId = Guid.NewGuid();
-        public readonly DateTime CreatedAt;
-        [Required]
+        public int Id { get; set; }
         public string Email { get; set; }
-        [Required]
         public string Message { get; set; }
     }
 }

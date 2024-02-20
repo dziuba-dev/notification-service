@@ -16,10 +16,10 @@
                 Console.WriteLine("--> Seeding Data...");
 
                 context.EmailsToUser.AddRange(
-                    new Models.EmailToUser() {UserId=Guid.NewGuid(), Email = "bar1walc@gmail.com", Message="Test"},
-                    new Models.EmailToUser() {UserId=Guid.NewGuid(), Email = "bar1walc@gmail.com", Message = "Test2"});;
+                    new Models.EmailToUser() { Email = "bar1walc@gmail.com", Message="Test"},
+                    new Models.EmailToUser() { Email = "bar1walc@gmail.com", Message = "Test2"});;
                 context.EmailsToAdmin.AddRange(
-                    new Models.EmailToAdmin() { Email = "bar1walc@gmail.com", UserId = Guid.NewGuid(), UserType = (Models.UserType)1, message = "Admin Test" });
+                    new Models.EmailToAdmin("bar1walc@gmail.com","AdminTest",(Models.UserType)1));
                 context.SaveChanges();
             }
         }
