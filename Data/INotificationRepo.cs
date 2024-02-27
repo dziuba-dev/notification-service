@@ -8,7 +8,8 @@ namespace NotificationService.Data
 
         IEnumerable<EmailToUser> GetAllUserEmail();
         IEnumerable<EmailToAdmin> GetAllAdminEmail();
-        EmailToUser GetMailById(int message);
+        EmailToAdmin GetAdminMailById(int id);
+        EmailToUser GetMailById(int id);
         void CreateEmail(EmailToUser mailU,EmailToAdmin mailA);
     }
 

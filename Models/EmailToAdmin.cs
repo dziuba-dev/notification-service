@@ -19,12 +19,15 @@ namespace NotificationService.Models
         public string message { get; set; }
         [Required]
         public UserType UserType { get; set; }
+        [Required]
+        public int UserId { get; set; }
 
-        public EmailToAdmin(string email, string message,UserType userType)
+        public EmailToAdmin(string email, string message,UserType userType, int userId)
         {
             this.Email = email;
             this.message = message;
             this.UserType = userType;
+            this.UserId = userId;
         }
     }
 }

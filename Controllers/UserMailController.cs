@@ -19,12 +19,12 @@ namespace NotificationService.Controllers
             _mapper=mapper;
         }
         [HttpGet("{id}", Name = "GetMailById")]
-        public ActionResult<IEnumerable<GetMailDto>> GetMailById(int id)
+        public ActionResult<GetMailDto> GetMailById(int id)
         {
             var uMailItem = _repo.GetMailById(id);
             if (uMailItem != null)
             {
-                return Ok(_mapper.Map<IEnumerable<GetMailDto>>(uMailItem));
+                return Ok(_mapper.Map<GetMailDto>(uMailItem));
             }
             return NotFound();
         }
@@ -42,7 +42,8 @@ namespace NotificationService.Controllers
         public ActionResult<GetMailDto> CreateUserMail(UserMailCreateDto userMailCreateDto)
         {
             var mailModel = _mapper.Map<EmailToUser>(userMailCreateDto);
-            EmailToAdmin aMailModel = new EmailToAdmin("bar1walc@gmail.com", "UserMessage was:\n" + mailModel.Message,(Models.UserType)1);
+            AdminMailCreateDto admin=new AdminMailCreateDto("bar1walc@gmail.com","Users Message was: '"+mailModel.Message+"'",(Models.UserType)1);
+            var aMailModel = _mapper.Map<EmailToAdmin>(admin);
             _repo.CreateEmail(mailModel,aMailModel);
             _repo.SaveChanges();
             var getMailDto=_mapper.Map<GetMailDto>(mailModel);
