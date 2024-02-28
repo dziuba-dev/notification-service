@@ -6,11 +6,12 @@ namespace NotificationService.Data
     {
         bool SaveChanges();
 
-        IEnumerable<EmailToUser> GetAllUserEmail();
-        IEnumerable<EmailToAdmin> GetAllAdminEmail();
-        EmailToAdmin GetAdminMailById(int id);
-        EmailToUser GetMailById(int id);
-        void CreateEmail(EmailToUser mailU,EmailToAdmin mailA);
+        IEnumerable<Email> GetAllMail();
+        Email GetMailById(int id);
+        User GetUserById(int id);
+        void CreateEmail(Email mail);
+        void DeleteEmail(Email mail);
+        void SendMail(Email mailId,User userId,User adminId);
     }
 
 }

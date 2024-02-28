@@ -1,4 +1,6 @@
 ﻿using NotificationService.Models;
+using SendGrid;
+using SendGrid.Helpers.Mail;
 
 namespace NotificationService.Data
 {
@@ -13,39 +15,48 @@ namespace NotificationService.Data
 
 
 
-        public void CreateEmail(EmailToUser mailU, EmailToAdmin mailA)
+        public void CreateEmail(Email mail)
         {
-            if (mailU == null) throw new ArgumentNullException(nameof(mailU));
-            if (mailA == null) throw new ArgumentNullException(nameof(mailA));
-            _context.EmailsToUser.Add(mailU);
-            var latestMail = GetAllUserEmail().OrderByDescending(e => e.Id).FirstOrDefault();
-            int id;
-            if (latestMail != null) {id = latestMail.Id + 1; }
-            else {id=1; }
-            _context.EmailsToAdmin.Add(new EmailToAdmin(mailA.Email, mailA.message, mailA.UserType, id));
+            if (mail == null) throw new ArgumentNullException(nameof(mail));
+            _context.Mails.Add(mail);
             SaveChanges();
-            
+        }
+        public void DeleteEmail(Email mail)
+        {
+            if (mail == null) throw new ArgumentNullException(nameof(mail));
+            _context.Mails.Remove(mail);
+            SaveChanges();
+        }
+        public async void SendMail(Email mail,User user,User admin)
+        {
+            var apiKey = "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";
+            var client = new SendGridClient(apiKey);
+            var from = new EmailAddress("praktykisend.grid@gmail.com", "Test");
+            var subject = mail.Subject;
+            var to = new EmailAddress(user.Email, "");
+            var plainTextContent = mail.Message;
+            var msg = MailHelper.CreateSingleEmail(from, to, subject, plainTextContent,null);
+            var response = await client.SendEmailAsync(msg);
+            to = new EmailAddress(admin.Email);
+            var adminMsg = MailHelper.CreateSingleEmail(from, to,"mail sent to "+user.Email, null, "UserId " + user.Id + "<br>Message:<br>" + mail.Subject + "<br>" + mail.Message);
+            var response2 = await client.SendEmailAsync(adminMsg);
+
         }
 
-        public IEnumerable<EmailToAdmin> GetAllAdminEmail()
+        public IEnumerable<Email> GetAllMail()
         {
-            return _context.EmailsToAdmin.ToList();
+            return _context.Mails.ToList();
+        }
+        
+        public Email GetMailById(int id)
+        {
+            return _context.Mails.FirstOrDefault(e=>e.Id== id);
+        }
+        public User GetUserById(int id)
+        {
+            return _context.Users.FirstOrDefault(e => e.Id == id);
         }
 
-        public IEnumerable<EmailToUser> GetAllUserEmail()
-        {
-            return _context.EmailsToUser.ToList();
-        }
-        public EmailToAdmin GetAdminMailById(int id)
-        {
-
-            return _context.EmailsToAdmin.FirstOrDefault(e => e.Id == id);
-        }
-        public EmailToUser GetMailById(int id)
-        {
-
-            return _context.EmailsToUser.FirstOrDefault(e=>e.Id== id);
-        }
 
         public bool SaveChanges()
         {

@@ -10,7 +10,7 @@ public class AppDbContext: DbContext
 
         }
 
-        public DbSet<EmailToUser> EmailsToUser { get; set; }
-        public DbSet<EmailToAdmin> EmailsToAdmin { get; set; }
+        public DbSet<Email> Mails { get; set; }
+        public DbSet<User> Users { get; set; }
     }
 }

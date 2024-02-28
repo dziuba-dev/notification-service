@@ -21,6 +21,8 @@ if (app.Environment.IsDevelopment())
     app.UseSwaggerUI();
     app.UseRouting();
     app.UseEndpoints(endpoints => endpoints.MapControllers());
+    PrepDb.PrepPopulation(app);
+    
 }
 
 app.UseHttpsRedirection();

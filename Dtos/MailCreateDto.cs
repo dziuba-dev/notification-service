@@ -2,11 +2,9 @@
 
 namespace NotificationService.Dtos
 {
-    public class UserMailCreateDto
+    public class MailCreateDto
     {
-        [Required]
-        public string Email { get; set; }
-        [Required]
+        public string Subject { get; set; }
         public string Message { get; set; }
     }
 }
