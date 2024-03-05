@@ -10,6 +10,7 @@ namespace NotificationService.Controllers
     [ApiController]
     public class SendMailController : ControllerBase
     {
+
         private INotificationRepo _repo;
         private IMapper _mapper;
 

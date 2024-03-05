@@ -1,4 +1,7 @@
 using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.Configuration;
+using Microsoft.Extensions.Options;
+using Newtonsoft.Json.Linq;
 using NotificationService.Data;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -7,11 +10,13 @@ var builder = WebApplication.CreateBuilder(args);
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
+builder.Services.Configure<SendGridOptions>(builder.Configuration.GetSection(SendGridOptions.SendGrid));
+builder.Services.AddRazorPages();
+builder.Services.AddScoped<SendGridOptions>();
 builder.Services.AddDbContext<AppDbContext>(opt => opt.UseInMemoryDatabase("InMem"));
 builder.Services.AddScoped<INotificationRepo, NotificationRepo>();
 builder.Services.AddAutoMapper(AppDomain.CurrentDomain.GetAssemblies());
 builder.Services.AddControllers();
-
 var app = builder.Build();
 
 // Configure the HTTP request pipeline.
@@ -22,6 +27,7 @@ if (app.Environment.IsDevelopment())
     app.UseRouting();
     app.UseEndpoints(endpoints => endpoints.MapControllers());
     PrepDb.PrepPopulation(app);
+    
     
 }
 
