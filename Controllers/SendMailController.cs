@@ -14,6 +14,7 @@ namespace NotificationService.Controllers
         private INotificationRepo _repo;
         private IMapper _mapper;
 
+
         public SendMailController(INotificationRepo repo, IMapper mapper)
         {
             _repo = repo;
@@ -22,12 +23,12 @@ namespace NotificationService.Controllers
         [HttpPost]
         public string SendMail(SendMailDto sendMailDto)
         {
-            Email email = _repo.GetMailById(sendMailDto.EmailId);
+            Email email = _repo.CreateEmail(new Email(sendMailDto.Subject, sendMailDto.Message));
             User user=_repo.GetUserById(sendMailDto.UserId);
             User admin=_repo.GetUserById(sendMailDto.AdminId);
             if(admin.UserType != UserType.Admin)  throw new Exception("admin must be an admin");
             _repo.SendMail(email,user,admin);
-            return "Mail sent ";
+            return "Mail sent, Message: "+email.Message;
         }
     }
 }

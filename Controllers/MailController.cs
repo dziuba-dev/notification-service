@@ -38,6 +38,7 @@ namespace NotificationService.Controllers
             }
             return NotFound();
         }
+        /*
         [HttpPost]
         public ActionResult<GetMailDto> CreateMail(MailCreateDto mailCreateDto)
         {
@@ -47,5 +48,6 @@ namespace NotificationService.Controllers
             var getMailDto=_mapper.Map<GetMailDto>(mailModel);
             return CreatedAtRoute(nameof(GetMailById), new { Id = getMailDto.Id }, getMailDto);
         }
+        */
     }
 }

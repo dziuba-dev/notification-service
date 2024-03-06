@@ -7,5 +7,8 @@ namespace NotificationService.Dtos
         public int EmailId { get; set; }
         public int UserId { get; set; }
         public int AdminId {  get; set; }
+        public string Subject { get; set; }
+        public string Message { get; set; }
+
     }
 }

@@ -9,7 +9,7 @@ namespace NotificationService.Data
         IEnumerable<Email> GetAllMail();
         Email GetMailById(int id);
         User GetUserById(int id);
-        void CreateEmail(Email mail);
+        Email CreateEmail(Email mail);
         void DeleteEmail(Email mail);
         void SendMail(Email mailId,User userId,User adminId);
     }
